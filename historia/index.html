@@ -1,0 +1,805 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#07131f">
+  <title>Nuestra historia ❄️ | Mi Sage duelista</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --noche: #07131f;
+      --noche2: #0d2230;
+      --jade: #49d6bb;
+      --menta: #b8fff0;
+      --blanco: #e8fffc;
+      --texto: #b9d6d5;
+      --borde: rgba(73, 214, 187, 0.22);
+      --panel: rgba(13, 34, 48, 0.82);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      padding: 28px 16px 45px;
+      overflow-x: hidden;
+      color: var(--blanco);
+      background:
+        radial-gradient(ellipse at 50% 0%, #123b48 0%, transparent 48%),
+        radial-gradient(ellipse at 100% 90%, #102a39 0%, transparent 40%),
+        var(--noche);
+      font-family: "Manrope", sans-serif;
+    }
+
+    button, a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .estrellas {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .estrella {
+      position: absolute;
+      color: var(--menta);
+      opacity: 0.6;
+      animation: brillar 3s ease-in-out infinite alternate;
+    }
+
+    .estrella:nth-child(1) { top: 12%; left: 9%; font-size: 14px; }
+    .estrella:nth-child(2) { top: 27%; left: 86%; font-size: 19px; animation-delay: .8s; }
+    .estrella:nth-child(3) { top: 69%; left: 12%; font-size: 12px; animation-delay: 1.4s; }
+    .estrella:nth-child(4) { top: 83%; left: 80%; font-size: 17px; animation-delay: .4s; }
+    .estrella:nth-child(5) { top: 46%; left: 94%; font-size: 11px; animation-delay: 1.8s; }
+    .estrella:nth-child(6) { top: 8%; left: 65%; font-size: 12px; animation-delay: 1s; }
+
+    @keyframes brillar {
+      from { opacity: .2; transform: scale(.8) rotate(0deg); }
+      to { opacity: .9; transform: scale(1.2) rotate(25deg); }
+    }
+
+    .contenedor {
+      width: min(760px, 100%);
+      margin: 0 auto;
+    }
+
+    .volver {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--menta);
+      text-decoration: none;
+      font-size: .9rem;
+      transition: color .2s, transform .2s;
+    }
+
+    .volver:hover {
+      color: white;
+      transform: translateX(-3px);
+    }
+
+    header {
+      padding: 35px 0 27px;
+      text-align: center;
+    }
+
+    .insignia {
+      display: inline-block;
+      margin-bottom: 15px;
+      padding: 7px 14px;
+      border: 1px solid var(--borde);
+      border-radius: 30px;
+      color: var(--menta);
+      background: rgba(73, 214, 187, .06);
+      font-size: .72rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-family: "Cinzel", serif;
+      font-size: clamp(2rem, 7vw, 3.35rem);
+      font-weight: 500;
+      letter-spacing: 1px;
+      line-height: 1.2;
+      text-shadow: 0 0 30px rgba(73, 214, 187, .2);
+    }
+
+    .subtitulo {
+      max-width: 480px;
+      margin: 15px auto 0;
+      color: var(--texto);
+      font-size: .95rem;
+      line-height: 1.8;
+    }
+
+    .progreso-contenedor {
+      margin: 0 auto 22px;
+      padding: 15px 18px;
+      border: 1px solid var(--borde);
+      border-radius: 15px;
+      background: rgba(7, 19, 31, .55);
+    }
+
+    .progreso-info {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+      color: var(--texto);
+      font-size: .76rem;
+    }
+
+    .progreso-info span:last-child {
+      color: var(--menta);
+    }
+
+    .progreso-fondo {
+      height: 5px;
+      overflow: hidden;
+      border-radius: 10px;
+      background: rgba(184, 255, 240, .09);
+    }
+
+    #barraProgreso {
+      width: 0;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #258e88, var(--menta));
+      box-shadow: 0 0 12px rgba(73, 214, 187, .5);
+      transition: width .5s ease;
+    }
+
+    .historia {
+      position: relative;
+      padding: clamp(23px, 6vw, 42px);
+      overflow: hidden;
+      border: 1px solid rgba(73, 214, 187, .25);
+      border-radius: 23px;
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(73, 214, 187, .09), transparent 55%),
+        var(--panel);
+      box-shadow: 0 20px 70px rgba(0, 0, 0, .2);
+      backdrop-filter: blur(10px);
+    }
+
+    .historia::before,
+    .historia::after {
+      position: absolute;
+      color: rgba(73, 214, 187, .15);
+      font-size: 85px;
+      pointer-events: none;
+    }
+
+    .historia::before {
+      content: "✧";
+      top: -15px;
+      right: 15px;
+    }
+
+    .historia::after {
+      content: "❄";
+      bottom: -35px;
+      left: 8px;
+    }
+
+    .numero-escena {
+      color: var(--jade);
+      font-size: .72rem;
+      letter-spacing: 2.5px;
+    }
+
+    .simbolo {
+      display: grid;
+      width: 82px;
+      height: 82px;
+      margin: 24px auto 20px;
+      place-items: center;
+      border: 1px solid rgba(73, 214, 187, .35);
+      border-radius: 50%;
+      color: var(--menta);
+      background: radial-gradient(circle, rgba(73, 214, 187, .18), rgba(73, 214, 187, .025));
+      box-shadow: 0 0 35px rgba(73, 214, 187, .12), inset 0 0 22px rgba(73, 214, 187, .06);
+      font-size: 2.1rem;
+      animation: flotar 4s ease-in-out infinite;
+    }
+
+    @keyframes flotar {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-7px); }
+    }
+
+    h2 {
+      position: relative;
+      margin-bottom: 18px;
+      text-align: center;
+      font-family: "Cinzel", serif;
+      font-size: clamp(1.45rem, 5vw, 2rem);
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    #relatoEscena {
+      position: relative;
+      color: #c8dcdf;
+      font-size: .96rem;
+      line-height: 2;
+      white-space: pre-line;
+    }
+
+    .pregunta {
+      position: relative;
+      margin-top: 27px;
+      color: var(--menta);
+      font-size: .92rem;
+      font-weight: 700;
+      line-height: 1.7;
+    }
+
+    .opciones {
+      position: relative;
+      display: grid;
+      gap: 12px;
+      margin-top: 17px;
+    }
+
+    .opcion {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      width: 100%;
+      padding: 16px 17px;
+      border: 1px solid rgba(73, 214, 187, .22);
+      border-radius: 13px;
+      color: var(--blanco);
+      background: rgba(7, 19, 31, .58);
+      text-align: left;
+      line-height: 1.6;
+      cursor: pointer;
+      transition: transform .2s, border-color .2s, background .2s, box-shadow .2s;
+    }
+
+    .opcion:hover {
+      transform: translateY(-2px);
+      border-color: var(--jade);
+      background: rgba(73, 214, 187, .08);
+      box-shadow: 0 7px 22px rgba(0, 0, 0, .15);
+    }
+
+    .opcion:focus-visible,
+    .boton-final:focus-visible {
+      outline: 2px solid var(--menta);
+      outline-offset: 4px;
+    }
+
+    .icono-opcion {
+      display: grid;
+      flex: 0 0 34px;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      border-radius: 10px;
+      color: var(--menta);
+      background: rgba(73, 214, 187, .1);
+      font-size: 1.1rem;
+    }
+
+    .secreto {
+      position: relative;
+      display: none;
+      margin-top: 25px;
+      padding: 21px;
+      border: 1px solid rgba(73, 214, 187, .28);
+      border-radius: 15px;
+      background: rgba(73, 214, 187, .07);
+      text-align: center;
+    }
+
+    .secreto.visible {
+      display: block;
+      animation: aparecer .7s ease both;
+    }
+
+    .secreto-icono {
+      margin-bottom: 10px;
+      color: var(--menta);
+      font-size: 1.7rem;
+    }
+
+    .secreto h3 {
+      margin-bottom: 10px;
+      color: var(--menta);
+      font-family: "Cinzel", serif;
+      font-weight: 500;
+    }
+
+    #textoSecreto {
+      color: #d3e9e8;
+      font-size: .92rem;
+      line-height: 1.9;
+    }
+
+    .acciones-finales {
+      display: none;
+      position: relative;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .acciones-finales.visible {
+      display: grid;
+      animation: aparecer .5s ease both;
+    }
+
+    .boton-final {
+      padding: 14px 18px;
+      border: 1px solid var(--jade);
+      border-radius: 12px;
+      color: var(--noche);
+      background: linear-gradient(135deg, var(--menta), var(--jade));
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform .2s, filter .2s;
+    }
+
+    .boton-final:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.08);
+    }
+
+    .boton-secundario {
+      color: var(--menta);
+      background: transparent;
+      border-color: var(--borde);
+    }
+
+    .pie {
+      padding-top: 23px;
+      color: #7eaaa9;
+      text-align: center;
+      font-size: .78rem;
+      line-height: 1.8;
+    }
+
+    @keyframes aparecer {
+      from { opacity: 0; transform: translateY(9px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 480px) {
+      body { padding: 20px 13px 30px; }
+      header { padding: 29px 0 23px; }
+      .historia { border-radius: 18px; }
+      #relatoEscena { font-size: .91rem; }
+      .opcion { padding: 13px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+<div class="estrellas" aria-hidden="true">
+  <span class="estrella">✧</span>
+  <span class="estrella">✦</span>
+  <span class="estrella">✧</span>
+  <span class="estrella">✦</span>
+  <span class="estrella">✧</span>
+  <span class="estrella">✦</span>
+</div>
+
+<main class="contenedor">
+  <a class="volver" href="../">← Volver al inicio</a>
+
+  <header>
+    <div class="insignia">Un pequeño cuento mágico</div>
+    <h1>Nuestra historia</h1>
+    <p class="subtitulo">
+      Cada camino guarda un secreto. Cada decisión abre una posibilidad.
+      ¿Qué descubrirás en este rincón del universo?
+    </p>
+  </header>
+
+  <section class="progreso-contenedor" aria-label="Progreso de la historia">
+    <div class="progreso-info">
+      <span id="contador">Prólogo</span>
+      <span id="porcentaje">0% explorado</span>
+    </div>
+    <div class="progreso-fondo">
+      <div id="barraProgreso"></div>
+    </div>
+  </section>
+
+  <section class="historia" aria-live="polite">
+    <div class="numero-escena" id="numeroEscena">PRÓLOGO · 001</div>
+
+    <div class="simbolo" id="simboloEscena" aria-hidden="true">✧</div>
+
+    <h2 id="tituloEscena">El bosque de jade</h2>
+
+    <p id="relatoEscena"></p>
+
+    <p class="pregunta" id="preguntaEscena"></p>
+
+    <div class="opciones" id="opcionesEscena"></div>
+
+    <div class="secreto" id="secreto">
+      <div class="secreto-icono">✧ ❄ ✧</div>
+      <h3>Un secreto para ti</h3>
+      <p id="textoSecreto"></p>
+    </div>
+
+    <div class="acciones-finales" id="accionesFinales">
+      <button class="boton-final" id="botonReiniciar" type="button">
+        ↻ Volver a vivir la historia
+      </button>
+      <button class="boton-final boton-secundario" id="botonInicio" type="button">
+        Volver al inicio del universo
+      </button>
+    </div>
+  </section>
+
+  <footer class="pie">
+    <p>✧ Hay mundos que se descubren siguiendo la luz. ✧</p>
+    <p>Hecho con un poquito de magia y mucho cariño ❄️</p>
+  </footer>
+</main>
+
+<script>
+  "use strict";
+
+  const escenas = {
+    inicio: {
+      numero: "PRÓLOGO · 001",
+      capitulo: 1,
+      simbolo: "✧",
+      titulo: "El bosque de jade",
+      relato: "La noche cubre un bosque que parece sacado de un sueño. Pequeñas luces flotan entre los árboles y, a lo lejos, un cristal de jade ilumina un sendero olvidado.\n\nSientes que has llegado hasta aquí por alguna razón. El bosque guarda un secreto... y parece estar esperando a que tú lo descubras.",
+      pregunta: "¿Qué decides hacer?",
+      opciones: [
+        { texto: "Acercarme al cristal brillante.", icono: "✧", destino: "cristal" },
+        { texto: "Seguir el sendero entre los árboles.", icono: "❄", destino: "sendero" }
+      ]
+    },
+
+    cristal: {
+      numero: "CAPÍTULO · 001",
+      capitulo: 1,
+      simbolo: "💎",
+      titulo: "El cristal que recuerda",
+      relato: "El cristal emite un resplandor suave cuando te acercas. Su superficie parece contener miles de recuerdos, como si cada destello perteneciera a alguien que alguna vez encontró su camino en este bosque.\n\nAl apoyar la mano sobre él, escuchas una voz tranquila: «Toda historia comienza con una elección. Pero lo que la hace especial es lo que decides cuidar».\n\nEl cristal se divide en dos luces que flotan frente a ti.",
+      pregunta: "¿Qué luz quieres seguir?",
+      opciones: [
+        { texto: "La luz verde que palpita como un corazón.", icono: "💚", destino: "luzVerde" },
+        { texto: "La luz plateada que parece hielo.", icono: "❄️", destino: "luzPlata" }
+      ]
+    },
+
+    sendero: {
+      numero: "CAPÍTULO · 001",
+      capitulo: 1,
+      simbolo: "🌲",
+      titulo: "El sendero olvidado",
+      relato: "Te adentras entre los árboles. Las ramas se inclinan suavemente, como si quisieran mostrarte el camino. Bajo tus pies, pequeñas flores brillan con cada paso.\n\nAl final del sendero descubres un lago inmóvil. Sobre el agua flota una burbuja luminosa y, en la otra orilla, una escalera de piedra asciende hacia las estrellas.",
+      pregunta: "¿Qué llama más tu atención?",
+      opciones: [
+        { texto: "La burbuja que flota sobre el lago.", icono: "💧", destino: "lago" },
+        { texto: "La escalera que conduce al cielo.", icono: "🌌", destino: "estrellas" }
+      ]
+    },
+
+    luzVerde: {
+      numero: "CAPÍTULO · 002",
+      capitulo: 2,
+      simbolo: "💚",
+      titulo: "La luz del corazón",
+      relato: "La luz verde te rodea con una calidez inesperada. Por un instante, el bosque parece menos oscuro y las flores comienzan a abrirse a tu alrededor.\n\nUna pequeña criatura hecha de hojas aparece sobre una roca. Te observa con curiosidad y deja caer una semilla brillante en tu mano.\n\n«La magia más poderosa no siempre es la que cambia el mundo», susurra. «A veces es la que cambia la forma en que lo miramos».\n\nLa semilla señala el camino hacia una fuente escondida.",
+      pregunta: "¿Qué haces con la semilla?",
+      opciones: [
+        { texto: "Plantarla junto a la fuente.", icono: "🌱", destino: "fuente" },
+        { texto: "Guardarla para descubrir su propósito.", icono: "✨", destino: "cofre" }
+      ]
+    },
+
+    luzPlata: {
+      numero: "CAPÍTULO · 002",
+      capitulo: 2,
+      simbolo: "❄️",
+      titulo: "El sendero de hielo",
+      relato: "Sigues la luz plateada hasta un jardín cubierto de nieve. Los copos no están fríos; parecen diminutas estrellas que descienden lentamente.\n\nEn el centro del jardín se alza una figura de cristal. En su interior descansa una pequeña flor que no se marchita.\n\nUna voz te pregunta si deseas conocer el secreto de aquella flor o continuar hacia la montaña que se alza más allá del jardín.",
+      pregunta: "¿Qué camino eliges?",
+      opciones: [
+        { texto: "Descubrir el secreto de la flor.", icono: "🌸", destino: "flor" },
+        { texto: "Subir hacia la montaña nevada.", icono: "🏔️", destino: "montana" }
+      ]
+    },
+
+    lago: {
+      numero: "CAPÍTULO · 002",
+      capitulo: 2,
+      simbolo: "💧",
+      titulo: "El lago de los susurros",
+      relato: "Te acercas al lago. La burbuja luminosa se mueve a tu alrededor como si estuviera jugando contigo. En su superficie aparecen imágenes fugaces: una luna, un jardín y un cielo repleto de estrellas.\n\nLa burbuja parece esperar a que tomes una decisión. Puedes escuchar lo que guarda o dejarla viajar hacia el firmamento.",
+      pregunta: "¿Qué decides?",
+      opciones: [
+        { texto: "Escuchar el mensaje que guarda.", icono: "💧", destino: "finalAgua" },
+        { texto: "Dejarla volar hacia las estrellas.", icono: "🌌", destino: "finalEstrellas" }
+      ]
+    },
+
+    estrellas: {
+      numero: "CAPÍTULO · 002",
+      capitulo: 2,
+      simbolo: "🌌",
+      titulo: "La escalera celeste",
+      relato: "Subes lentamente por la escalera de piedra. Cada peldaño ilumina el siguiente y, cuando miras hacia abajo, el bosque parece un océano de luces verdes.\n\nAl llegar a la cima encuentras dos puertas suspendidas en el cielo. Una está adornada con flores luminosas; la otra tiene grabada una luna creciente.",
+      pregunta: "¿Cuál puerta abres?",
+      opciones: [
+        { texto: "La puerta cubierta de flores.", icono: "🌸", destino: "finalFlor" },
+        { texto: "La puerta con la luna creciente.", icono: "🌙", destino: "finalLuna" }
+      ]
+    },
+
+    fuente: {
+      numero: "CAPÍTULO · 003",
+      capitulo: 3,
+      simbolo: "🌱",
+      titulo: "El jardín que despierta",
+      relato: "Plantas la semilla junto a la fuente. Durante unos segundos no ocurre nada. Después, una línea de luz recorre la tierra y aparece un pequeño árbol de hojas transparentes.\n\nEn sus ramas crecen diminutas campanas que suenan con la brisa. Cada nota hace florecer una parte del jardín.\n\nEntre las raíces descubres una escalera que conduce a una cámara escondida.",
+      pregunta: "¿Qué haces ahora?",
+      opciones: [
+        { texto: "Bajar a la cámara secreta.", icono: "🔮", destino: "cofre" },
+        { texto: "Quedarme un momento en el jardín.", icono: "🌸", destino: "finalClaro" }
+      ]
+    },
+
+    cofre: {
+      numero: "CAPÍTULO · 003",
+      capitulo: 3,
+      simbolo: "🔮",
+      titulo: "El cofre de los recuerdos",
+      relato: "En la cámara encuentras un cofre pequeño, cubierto de símbolos de jade. No tiene cerradura; solo una inscripción: «Lo que tiene valor no siempre puede guardarse entre cuatro paredes».\n\nAl abrirlo, descubres una esfera que proyecta recuerdos de lugares que todavía no has visitado. En el centro de la esfera hay un mapa con un único destino marcado.",
+      pregunta: "¿Hacia dónde te lleva el mapa?",
+      opciones: [
+        { texto: "A un jardín escondido entre montañas.", icono: "🏔️", destino: "finalMontana" },
+        { texto: "A un claro donde nunca deja de amanecer.", icono: "☀️", destino: "finalClaro" }
+      ]
+    },
+
+    flor: {
+      numero: "CAPÍTULO · 003",
+      capitulo: 3,
+      simbolo: "🌸",
+      titulo: "La flor eterna",
+      relato: "La figura de cristal se abre sin hacer ruido. La flor que descansaba en su interior flota hacia ti y deja una estela de pequeñas partículas luminosas.\n\nCuando la sostienes, descubres que sus pétalos cambian de color según lo que sientes. No intenta ocultar la tristeza ni convertir toda sombra en luz: simplemente permanece contigo.\n\nA lo lejos, una puerta comienza a brillar.",
+      pregunta: "¿Qué haces con la flor?",
+      opciones: [
+        { texto: "Llevarla conmigo hasta la puerta.", icono: "🌸", destino: "finalFlor" },
+        { texto: "Dejarla en el jardín para que otros la encuentren.", icono: "💚", destino: "finalClaro" }
+      ]
+    },
+
+    montana: {
+      numero: "CAPÍTULO · 003",
+      capitulo: 3,
+      simbolo: "🏔️",
+      titulo: "La montaña silenciosa",
+      relato: "El sendero asciende entre copos de nieve y cristales de hielo. Al alcanzar la cima, encuentras una pequeña cabaña iluminada por una lámpara jade.\n\nDentro hay una mesa, dos tazas y una ventana desde la que se ve todo el bosque. Sobre la mesa descansa una carta sin destinatario.\n\nLa carta dice: «Hay lugares que se vuelven especiales por lo que encontramos en ellos... y por aquello que deseamos compartir».\n\nDetrás de la cabaña hay un último camino.",
+      pregunta: "¿Cómo quieres terminar tu viaje?",
+      opciones: [
+        { texto: "Seguir el camino hasta el mirador lunar.", icono: "🌙", destino: "finalLuna" },
+        { texto: "Quedarme contemplando las estrellas.", icono: "✨", destino: "finalEstrellas" }
+      ]
+    },
+
+    finalFlor: {
+      numero: "FINAL · 004",
+      capitulo: 4,
+      simbolo: "🌸",
+      titulo: "El jardín de los deseos",
+      relato: "La puerta se abre hacia un jardín que parece no tener fin. Flores de todos los colores brillan bajo un cielo profundo y, en el centro, un árbol extiende sus ramas hacia las estrellas.\n\nCada flor guarda un deseo que alguien se atrevió a imaginar. Comprendes que no todos tienen que cumplirse exactamente como los soñamos para regalarnos algo hermoso.\n\nUna flor de jade se posa en tu mano. Sus pétalos resplandecen una última vez antes de convertirse en pequeñas luces.",
+      secreto: "Cuida aquello que hace florecer tu mundo. A veces, los regalos más hermosos son los momentos que aprendemos a valorar."
+    },
+
+    finalPuerta: {
+      numero: "FINAL · 004",
+      capitulo: 4,
+      simbolo: "🚪",
+      titulo: "La puerta secreta",
+      relato: "Detrás de la puerta encuentras una habitación llena de ventanas. Cada una muestra un paisaje distinto: bosques, océanos, montañas y cielos que nunca habías visto.\n\nEn la última ventana aparece tu reflejo, rodeado de una luz tranquila. Comprendes que la aventura no consistía únicamente en encontrar un lugar mágico, sino también en atreverte a descubrirlo.\n\nLa puerta queda abierta para cuando decidas volver.",
+      secreto: "No necesitas conocer todos los caminos para dar el primer paso. Lo desconocido también puede guardar maravillas."
+    },
+
+    finalCofre: {
+      numero: "FINAL · 004",
+      capitulo: 4,
+      simbolo: "🔮",
+      titulo: "El tesoro invisible",
+      relato: "La esfera se ilumina y proyecta miles de pequeños destellos sobre las paredes. Esperabas encontrar una respuesta definitiva, pero el cofre no contiene oro ni una fórmula secreta.\n\nContiene un espejo diminuto y una nota: «El tesoro que buscas también se construye con cada decisión que tomas».\n\nLa esfera se apaga lentamente, aunque una pequeña luz permanece en tus manos.",
+      secreto: "Tu viaje está hecho de elecciones. Incluso las pequeñas pueden abrir caminos que nunca imaginaste."
+    },
+
+    finalLuna: {
+      numero: "FINAL · 004",
+      capitulo: 4,
+      simbolo: "🌙",
+      titulo: "Bajo la misma luna",
+      relato: "Llegas a un mirador desde el que puedes contemplar todo el bosque. Sobre ti, la luna ilumina las montañas y dibuja un sendero plateado entre los árboles.\n\nPor un momento, el mundo parece quedarse en silencio. Piensas en todos los lugares que existen bajo ese mismo cielo y en cómo una luz distante puede acompañarnos incluso cuando no podemos tocarla.\n\nLa luna brilla con suavidad, como si quisiera recordarte que la distancia no vuelve insignificante aquello que sentimos.",
+      secreto: "Incluso bajo un cielo inmenso, una pequeña luz puede hacernos sentir acompañados. Nunca subestimes lo que significa estar presente para alguien."
+    },
+
+    finalAgua: {
+      numero: "FINAL · 004",
+      capitulo: 4,
+      simbolo: "💧",
+      titulo: "Un mensaje entre ondas",
+      relato: "Te acercas y la burbuja reproduce una melodía suave. Dentro escuchas palabras que parecen escritas para un momento tranquilo:\n\n«Ojalá puedas recordar que tu presencia importa. Que las pequeñas cosas que compartes pueden quedarse en la memoria de alguien mucho más de lo que imaginas».\n\nLa burbuja estalla en miles de partículas brillantes.",
+      secreto: "Nunca subestimes la alegría que puede dejar un pequeño gesto de cariño."
+    },
+
+    finalEstrellas: {
+      numero: "FINAL · 004",
+      capitulo: 4,
+      simbolo: "🌌",
+      titulo: "Un deseo en el cielo",
+      relato: "Dejas que la burbuja ascienda. Cruza la superficie del lago, atraviesa la niebla y alcanza el cielo.\n\nEn cuanto toca una estrella, el firmamento entero se ilumina. Por un instante, todas las luces parecen formar una enorme sonrisa.\n\nEn el agua aparece un mensaje:\n\n«Hay deseos que no necesitan convertirse en magia para hacer más bonito el mundo. A veces, basta con compartirlos con alguien que haga brillar nuestros días».\n\nLa estrella deja caer una pequeña chispa sobre el lago. Antes de desaparecer, ilumina una última frase.",
+      secreto: "Los deseos más bonitos son aquellos que nos recuerdan lo especial que puede ser compartir nuestro universo con alguien."
+    },
+
+    finalMontana: {
+      numero: "FINAL · 004",
+      capitulo: 4,
+      simbolo: "🏔️",
+      titulo: "El rincón entre las nubes",
+      relato: "El mapa te conduce hasta un jardín escondido entre montañas. Allí, las nubes pasan tan cerca que puedes verlas deslizarse entre los árboles.\n\nUna pequeña campana cuelga de una rama. Al tocarla, una luz recorre el valle y revela cientos de flores que permanecían ocultas.\n\nNo has encontrado el final de todos los caminos, pero sí un lugar donde detenerte, respirar y disfrutar de lo que has descubierto.",
+      secreto: "No todas las aventuras necesitan una gran recompensa. A veces, encontrar un lugar donde estar en paz ya es algo extraordinario."
+    },
+
+    finalClaro: {
+      numero: "FINAL · 004",
+      capitulo: 4,
+      simbolo: "☀️",
+      titulo: "Donde siempre amanece",
+      relato: "Llegas a un claro donde el cielo conserva los colores del amanecer. Las flores se mecen con el viento y las pequeñas luces del bosque se reúnen a tu alrededor.\n\nNo hay cofres que abrir ni puertas que atravesar. Solo un instante tranquilo en el que puedes observar todo lo que has recorrido.\n\nComprendes que, a veces, la magia no consiste en cambiar el destino, sino en aprender a disfrutar del camino.",
+      secreto: "Permítete disfrutar de los pequeños momentos. No tienes que llegar a ninguna parte para que tu viaje tenga valor."
+    }
+  };
+
+  const elemento = (id) => document.getElementById(id);
+
+  const numeroEscena = elemento("numeroEscena");
+  const simboloEscena = elemento("simboloEscena");
+  const tituloEscena = elemento("tituloEscena");
+  const relatoEscena = elemento("relatoEscena");
+  const preguntaEscena = elemento("preguntaEscena");
+  const opcionesEscena = elemento("opcionesEscena");
+  const barraProgreso = elemento("barraProgreso");
+  const contador = elemento("contador");
+  const porcentaje = elemento("porcentaje");
+  const secreto = elemento("secreto");
+  const textoSecreto = elemento("textoSecreto");
+  const accionesFinales = elemento("accionesFinales");
+  const botonReiniciar = elemento("botonReiniciar");
+  const botonInicio = elemento("botonInicio");
+
+  let escenaActual = "inicio";
+  let historial = [];
+  let finalesDescubiertos = new Set();
+
+  function mostrarEscena(id) {
+    const escena = escenas[id];
+
+    if (!escena) {
+      console.error("No se encontró la escena:", id);
+      return;
+    }
+
+    escenaActual = id;
+
+    numeroEscena.textContent = escena.numero;
+    simboloEscena.textContent = escena.simbolo;
+    tituloEscena.textContent = escena.titulo;
+    relatoEscena.textContent = escena.relato;
+    preguntaEscena.textContent = escena.pregunta || "";
+    preguntaEscena.hidden = !escena.pregunta;
+
+    opcionesEscena.replaceChildren();
+    secreto.classList.remove("visible");
+    textoSecreto.textContent = "";
+    accionesFinales.classList.remove("visible");
+
+    const esFinal = Boolean(escena.secreto);
+
+    if (esFinal) {
+      finalesDescubiertos.add(id);
+    }
+
+    const progreso = esFinal
+      ? 100
+      : Math.min(((escena.capitulo - 1) / 4) * 100 + 15, 90);
+
+    barraProgreso.style.width = progreso + "%";
+    porcentaje.textContent = progreso + "% explorado";
+
+    contador.textContent = esFinal
+      ? "Final descubierto"
+      : "Capítulo " + escena.capitulo + " de 4";
+
+    if (escena.opciones) {
+      escena.opciones.forEach((opcion) => {
+        const boton = document.createElement("button");
+        boton.className = "opcion";
+        boton.type = "button";
+
+        const icono = document.createElement("span");
+        icono.className = "icono-opcion";
+        icono.setAttribute("aria-hidden", "true");
+        icono.textContent = opcion.icono;
+
+        const texto = document.createElement("span");
+        texto.textContent = opcion.texto;
+
+        boton.append(icono, texto);
+
+        boton.addEventListener("click", () => {
+          historial.push(escenaActual);
+          mostrarEscena(opcion.destino);
+        });
+
+        opcionesEscena.appendChild(boton);
+      });
+    }
+
+    if (esFinal) {
+      secreto.classList.add("visible");
+      textoSecreto.textContent = escena.secreto;
+      accionesFinales.classList.add("visible");
+
+      contador.textContent = "Final descubierto · " +
+        finalesDescubiertos.size + " final" +
+        (finalesDescubiertos.size === 1 ? "" : "es") +
+        " encontrado" +
+        (finalesDescubiertos.size === 1 ? "" : "s");
+    }
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  botonReiniciar.addEventListener("click", () => {
+    historial = [];
+    mostrarEscena("inicio");
+  });
+
+  botonInicio.addEventListener("click", () => {
+    window.location.href = "../";
+  });
+
+  mostrarEscena("inicio");
+</script>
+</body>
+</html>
