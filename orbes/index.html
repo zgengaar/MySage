@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -18,13 +19,15 @@
       --blanco: #e8fffc;
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
       min-height: 100vh;
       color: var(--blanco);
-      font-family: 'Manrope', sans-serif;
+      font-family: "Manrope", sans-serif;
       background:
         radial-gradient(ellipse at 50% 15%, #1c8f8640, transparent 45%),
         linear-gradient(145deg, #050d18, var(--noche), #0b252e);
@@ -74,11 +77,17 @@
       transition: background .2s;
     }
 
-    .volver:hover { background: #49d6bb18; }
+    .volver:hover {
+      background: #49d6bb18;
+    }
 
-    main { padding: 65px 25px 80px; }
+    main {
+      padding: 65px 25px 80px;
+    }
 
-    .encabezado { text-align: center; }
+    .encabezado {
+      text-align: center;
+    }
 
     .etiqueta {
       color: var(--jade);
@@ -88,7 +97,7 @@
     }
 
     h1, h2 {
-      font-family: 'Cinzel', serif;
+      font-family: "Cinzel", serif;
       font-weight: 600;
     }
 
@@ -98,7 +107,9 @@
       margin: 18px 0;
     }
 
-    h1 span { color: var(--menta); }
+    h1 span {
+      color: var(--menta);
+    }
 
     .intro {
       max-width: 570px;
@@ -136,9 +147,10 @@
       font-size: 2rem;
       color: #effffb;
       background: radial-gradient(circle at 32% 25%,
-        #effffb 0 2%, #b7fff0 5%, #4bd7c2 24%,
-        #168b91 48%, #0b3d54 72%, #061b2b 100%);
-      box-shadow: 0 0 22px #5fffe15c,
+      #effffb 0 2%, #b7fff0 5%, #4bd7c2 24%,
+      #168b91 48%, #0b3d54 72%, #061b2b 100%);
+      box-shadow:
+        0 0 22px #5fffe15c,
         0 0 55px #32d6c02b,
         inset -12px -14px 22px #000a;
       transition: transform .3s, box-shadow .3s;
@@ -148,7 +160,8 @@
     .orbe:focus-visible .esfera,
     .orbe.descubierta .esfera {
       transform: translateY(-7px) scale(1.06);
-      box-shadow: 0 0 30px #5fffe1a0,
+      box-shadow:
+        0 0 30px #5fffe1a0,
         0 0 75px #32d6c05c,
         inset -12px -14px 22px #000a;
     }
@@ -216,11 +229,60 @@
       animation: aparecer .8s ease both;
     }
 
-    .secreto h2 { color: var(--menta); }
+    .secreto h2 {
+      color: var(--menta);
+    }
 
     .secreto p {
       line-height: 1.9;
       color: #c1dedd;
+    }
+
+    /* Botón para continuar: oculto hasta descubrir las cinco orbes */
+    .continuar {
+      display: none;
+      max-width: 650px;
+      margin: 25px auto 0;
+      padding: 28px 22px;
+      text-align: center;
+      border: 1px solid #77efdb45;
+      background: linear-gradient(145deg, #0e2c3680, #06131f99);
+    }
+
+    .continuar.visible {
+      display: block;
+      animation: aparecer .9s ease both;
+    }
+
+    .continuar p {
+      margin: 0 0 20px;
+      color: #c1dedd;
+      line-height: 1.8;
+    }
+
+    .boton-historia {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 15px 23px;
+      border: 1px solid var(--jade);
+      color: var(--noche);
+      background: linear-gradient(135deg, var(--menta), var(--jade));
+      font-weight: 700;
+      font-size: .9rem;
+      transition: transform .25s, box-shadow .25s, filter .25s;
+    }
+
+    .boton-historia:hover {
+      transform: translateY(-3px);
+      filter: brightness(1.08);
+      box-shadow: 0 0 28px #49d6bb45;
+    }
+
+    .boton-historia:focus-visible {
+      outline: 2px solid var(--menta);
+      outline-offset: 5px;
     }
 
     footer {
@@ -236,14 +298,28 @@
     }
 
     @keyframes aparecer {
-      from { opacity: 0; transform: translateY(12px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     @media (max-width: 650px) {
-      header { padding: 20px; }
-      .marca { font-size: .62rem; }
-      main { padding: 45px 20px 60px; }
+      header {
+        padding: 20px;
+      }
+
+      .marca {
+        font-size: .62rem;
+      }
+
+      main {
+        padding: 45px 20px 60px;
+      }
 
       .orbes {
         grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -251,10 +327,26 @@
         margin: 35px 0;
       }
 
-      .esfera { width: 78px; }
-      .nombre { font-size: .65rem; }
-      .mensaje { padding: 25px 20px; }
-      footer { font-size: .55rem; }
+      .esfera {
+        width: 78px;
+      }
+
+      .nombre {
+        font-size: .65rem;
+      }
+
+      .mensaje {
+        padding: 25px 20px;
+      }
+
+      footer {
+        font-size: .55rem;
+      }
+
+      .boton-historia {
+        width: 100%;
+        padding: 15px 12px;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -267,133 +359,149 @@
 </head>
 
 <body>
-  <header>
-    <div class="marca">❄ Un pequeño universo</div>
-    <a class="volver" href="../">← Volver al inicio</a>
-  </header>
+<header>
+  <div class="marca">❄ Un pequeño universo</div>
+  <a class="volver" href="../">← Volver al inicio</a>
+</header>
 
-  <main>
-    <section class="encabezado">
-      <div class="etiqueta">Un pequeño secreto te espera</div>
-      <h1>Las cinco <span>orbes.</span></h1>
-      <p class="intro">
-        Cinco pequeñas luces, cinco mensajes guardados para ti.
-        Acércate a cada una y descubre lo que esconde.
-        Cuando las encuentres todas, algo especial te estará esperando.
-      </p>
-    </section>
+<main>
+  <section class="encabezado">
+    <div class="etiqueta">Un pequeño secreto te espera</div>
+    <h1>Las cinco <span>orbes.</span></h1>
+    <p class="intro">
+      Cinco pequeñas luces, cinco mensajes guardados para ti.
+      Acércate a cada una y descubre lo que esconde.
+      Cuando las encuentres todas, algo especial te estará esperando.
+    </p>
+  </section>
 
-    <section class="orbes" aria-label="Cinco orbes mágicas">
-      <button class="orbe" data-numero="0">
-        <span class="esfera">✧</span>
-        <span class="nombre">Luz</span>
-        <span class="estado">Sin descubrir</span>
-      </button>
+  <section class="orbes" aria-label="Cinco orbes mágicas">
+    <button class="orbe" data-numero="0" type="button">
+      <span class="esfera">✧</span>
+      <span class="nombre">Luz</span>
+      <span class="estado">Sin descubrir</span>
+    </button>
 
-      <button class="orbe" data-numero="1">
-        <span class="esfera">❄</span>
-        <span class="nombre">Hielo</span>
-        <span class="estado">Sin descubrir</span>
-      </button>
+    <button class="orbe" data-numero="1" type="button">
+      <span class="esfera">❄</span>
+      <span class="nombre">Hielo</span>
+      <span class="estado">Sin descubrir</span>
+    </button>
 
-      <button class="orbe" data-numero="2">
-        <span class="esfera">✦</span>
-        <span class="nombre">Jade</span>
-        <span class="estado">Sin descubrir</span>
-      </button>
+    <button class="orbe" data-numero="2" type="button">
+      <span class="esfera">✦</span>
+      <span class="nombre">Jade</span>
+      <span class="estado">Sin descubrir</span>
+    </button>
 
-      <button class="orbe" data-numero="3">
-        <span class="esfera">♡</span>
-        <span class="nombre">Corazón</span>
-        <span class="estado">Sin descubrir</span>
-      </button>
+    <button class="orbe" data-numero="3" type="button">
+      <span class="esfera">♡</span>
+      <span class="nombre">Corazón</span>
+      <span class="estado">Sin descubrir</span>
+    </button>
 
-      <button class="orbe" data-numero="4">
-        <span class="esfera">☼</span>
-        <span class="nombre">Eternidad</span>
-        <span class="estado">Sin descubrir</span>
-      </button>
-    </section>
+    <button class="orbe" data-numero="4" type="button">
+      <span class="esfera">☼</span>
+      <span class="nombre">Eternidad</span>
+      <span class="estado">Sin descubrir</span>
+    </button>
+  </section>
 
-    <div class="progreso" id="progreso" aria-live="polite">
-      0 de 5 orbes descubiertas
-    </div>
+  <div class="progreso" id="progreso" aria-live="polite">
+    0 de 5 orbes descubiertas
+  </div>
 
-    <section class="mensaje" aria-live="polite">
-      <h2 id="tituloMensaje">Elige una orbe</h2>
-      <p id="textoMensaje">
-        Cada luz guarda unas palabras. Pulsa una esfera para descubrirlas.
-      </p>
-    </section>
+  <section class="mensaje" aria-live="polite">
+    <h2 id="tituloMensaje">Elige una orbe</h2>
+    <p id="textoMensaje">
+      Cada luz guarda unas palabras. Pulsa una esfera para descubrirlas.
+    </p>
+  </section>
 
-    <section class="secreto" id="secreto" aria-live="polite">
-      <div class="etiqueta">Secreto desbloqueado</div>
-      <h2>Encontraste todas las luces. 💚</h2>
-      <p>
-        De todas las cosas bonitas que podría esconder este universo,
-        una de mis favoritas es que tú formas parte de él.
-        Gracias por existir y por darle un brillo especial a mis días.
-      </p>
-    </section>
-  </main>
+  <section class="secreto" id="secreto" aria-live="polite">
+    <div class="etiqueta">Secreto desbloqueado</div>
+    <h2>Encontraste todas las luces. 💚</h2>
+    <p>
+      De todas las cosas bonitas que podría esconder este universo,
+      una de mis favoritas es que tú formas parte de él.
+      Gracias por existir y por darle un brillo especial a mis días.
+    </p>
+  </section>
 
-  <footer>
-    <span>Hecho con cariño, detalle a detalle</span>
-    <span>Jade · Hielo · Corazón</span>
-  </footer>
+  <!-- Este acceso solo aparece al descubrir las cinco orbes -->
+  <section class="continuar" id="continuar" aria-live="polite">
+    <div class="etiqueta">Un nuevo camino te espera</div>
+    <h2>¿Lista para descubrir nuestra historia? ❄️</h2>
+    <p>
+      Has encontrado las cinco luces y descubierto su secreto.
+      Pero todavía hay otra parte de nuestro universo esperando por ti...
+    </p>
+    <a class="boton-historia" href="../historia/">
+      📖 Descubrir nuestra historia →
+    </a>
+  </section>
+</main>
 
-  <script>
-    const mensajes = [
-      {
-        titulo: "Una luz para ti",
-        texto: "Incluso en los días más oscuros, espero poder ser una pequeña luz que te recuerde cuánto vales."
-      },
-      {
-        titulo: "Un invierno menos frío",
-        texto: "Hasta el invierno más frío parece distinto cuando tengo la oportunidad de compartir un pedacito de mi día contigo."
-      },
-      {
-        titulo: "Algo que florece",
-        texto: "Hay cosas bonitas que aparecen sin buscarlas. Para mí, conocerte ha sido una de ellas."
-      },
-      {
-        titulo: "Un lugar en mi corazón",
-        texto: "No importa cuántos kilómetros haya entre nosotros: me gusta tener un lugar en tu mundo y que tú tengas uno en el mío."
-      },
-      {
-        titulo: "Mi deseo favorito",
-        texto: "Si pudiera pedir algo, sería seguir creando recuerdos contigo y descubrir todas las cosas bonitas que todavía nos esperan."
+<footer>
+  <span>Hecho con cariño, detalle a detalle</span>
+  <span>Jade · Hielo · Corazón</span>
+</footer>
+
+<script>
+  "use strict";
+
+  const mensajes = [
+    {
+      titulo: "Una luz para ti",
+      texto: "Incluso en los días más oscuros, espero poder ser una pequeña luz que te recuerde cuánto vales."
+    },
+    {
+      titulo: "Un invierno menos frío",
+      texto: "Hasta el invierno más frío parece distinto cuando tengo la oportunidad de compartir un pedacito de mi día contigo."
+    },
+    {
+      titulo: "Algo que florece",
+      texto: "Hay cosas bonitas que aparecen sin buscarlas. Para mí, conocerte ha sido una de ellas."
+    },
+    {
+      titulo: "Un lugar en mi corazón",
+      texto: "No importa cuántos kilómetros haya entre nosotros: me gusta tener un lugar en tu mundo y que tú tengas uno en el mío."
+    },
+    {
+      titulo: "Mi deseo favorito",
+      texto: "Si pudiera pedir algo, sería seguir creando recuerdos contigo y descubrir todas las cosas bonitas que todavía nos esperan."
+    }
+  ];
+
+  const descubiertas = new Set();
+  const orbes = document.querySelectorAll(".orbe");
+  const tituloMensaje = document.getElementById("tituloMensaje");
+  const textoMensaje = document.getElementById("textoMensaje");
+  const progreso = document.getElementById("progreso");
+  const secreto = document.getElementById("secreto");
+  const continuar = document.getElementById("continuar");
+
+  orbes.forEach((orbe) => {
+    orbe.addEventListener("click", () => {
+      const numero = Number(orbe.dataset.numero);
+      const mensaje = mensajes[numero];
+
+      descubiertas.add(numero);
+      orbe.classList.add("descubierta");
+      orbe.querySelector(".estado").textContent = "Descubierta";
+
+      tituloMensaje.textContent = mensaje.titulo;
+      textoMensaje.textContent = mensaje.texto;
+
+      progreso.textContent =
+        `${descubiertas.size} de 5 orbes descubiertas`;
+
+      if (descubiertas.size === mensajes.length) {
+        secreto.classList.add("visible");
+        continuar.classList.add("visible");
       }
-    ];
-
-    const descubiertas = new Set();
-    const orbes = document.querySelectorAll(".orbe");
-    const tituloMensaje = document.getElementById("tituloMensaje");
-    const textoMensaje = document.getElementById("textoMensaje");
-    const progreso = document.getElementById("progreso");
-    const secreto = document.getElementById("secreto");
-
-    orbes.forEach((orbe) => {
-      orbe.addEventListener("click", () => {
-        const numero = Number(orbe.dataset.numero);
-        const mensaje = mensajes[numero];
-
-        descubiertas.add(numero);
-        orbe.classList.add("descubierta");
-        orbe.querySelector(".estado").textContent = "Descubierta";
-
-        tituloMensaje.textContent = mensaje.titulo;
-        textoMensaje.textContent = mensaje.texto;
-
-        progreso.textContent =
-          `${descubiertas.size} de 5 orbes descubiertas`;
-
-        if (descubiertas.size === mensajes.length) {
-          secreto.classList.add("visible");
-        }
-      });
     });
-  </script>
+  });
+</script>
 </body>
 </html>
-
