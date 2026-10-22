@@ -1,33 +1,602 @@
-<!doctype html>
-<html class="no-js" lang="">
 
+<!DOCTYPE html>
+<html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title></title>
-  <link rel="stylesheet" href="css/style.css">
-  <meta name="description" content="">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#07131f">
+  <title>Mi Sage duelista ❄️</title>
 
-  <meta property="og:title" content="">
-  <meta property="og:type" content="">
-  <meta property="og:url" content="">
-  <meta property="og:image" content="">
-  <meta property="og:image:alt" content="">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="icon" href="/icon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="icon.png">
+  <style>
+    :root {
+      --noche: #07131f;
+      --jade: #49d6bb;
+      --menta: #b8fff0;
+      --blanco: #e8fffc;
+    }
 
-  <link rel="manifest" href="site.webmanifest">
-  <meta name="theme-color" content="#fafafa">
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--blanco);
+      font-family: 'Manrope', sans-serif;
+      background:
+        radial-gradient(ellipse at 75% 40%, #1c8f8640, transparent 40%),
+        radial-gradient(ellipse at 15% 85%, #23638535, transparent 35%),
+        linear-gradient(135deg, #050d18, var(--noche), #0b252e);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .2;
+      background-image: radial-gradient(#c9fff5 1px, transparent 1px);
+      background-size: 53px 53px;
+    }
+
+    .pagina {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    header, footer {
+      width: min(1180px, 100%);
+      margin: 0 auto;
+      padding: 24px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .marca {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: .76rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+
+    .simbolo {
+      width: 34px;
+      height: 34px;
+      border: 1px solid #73efd899;
+      display: grid;
+      place-items: center;
+      transform: rotate(45deg);
+    }
+
+    .simbolo span {
+      transform: rotate(-45deg);
+      font-size: 18px;
+    }
+
+    .nota, footer {
+      color: #8db8bc;
+      font-size: .68rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    main {
+      flex: 1;
+      width: min(1180px, 100%);
+      margin: 0 auto;
+      padding: 20px 28px 45px;
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      align-items: center;
+      gap: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .contenido {
+      padding: 35px 0 55px;
+    }
+
+    .etiqueta {
+      color: var(--jade);
+      font-size: .76rem;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .etiqueta::before {
+      content: "";
+      width: 34px;
+      height: 1px;
+      background: var(--jade);
+      box-shadow: 0 0 10px var(--jade);
+    }
+
+    h1 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2.8rem, 5.3vw, 5.5rem);
+      line-height: 1.08;
+      font-weight: 600;
+      letter-spacing: -.04em;
+      margin: 25px 0 20px;
+    }
+
+    h1 span {
+      display: block;
+      color: var(--menta);
+      text-shadow: 0 0 35px #49d6bb38;
+    }
+
+    .descripcion {
+      color: #b7d1d4;
+      font-size: 1rem;
+      line-height: 1.9;
+      max-width: 470px;
+      margin-bottom: 30px;
+    }
+
+    .acciones {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .boton {
+      border: 0;
+      border-radius: 3px;
+      padding: 16px 22px;
+      cursor: pointer;
+      background: linear-gradient(115deg, #a9f8e7, #52d7bd);
+      color: #06221f;
+      font: 700 .82rem 'Manrope', sans-serif;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      box-shadow: 0 0 28px #49d6bb30;
+      transition: transform .25s, box-shadow .25s;
+    }
+
+    .boton:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 36px #49d6bb60;
+    }
+
+    .boton:focus-visible {
+      outline: 2px solid white;
+      outline-offset: 4px;
+    }
+
+    .ayuda {
+      color: #8fb2b6;
+      font-size: .78rem;
+    }
+
+    /* Orbe mágico */
+
+    .arte {
+      min-height: 560px;
+      position: relative;
+      display: grid;
+      place-items: center;
+      isolation: isolate;
+    }
+
+    .aura {
+      position: absolute;
+      width: min(38vw, 460px);
+      aspect-ratio: 1;
+      border: 1px solid #72f0da35;
+      border-radius: 50%;
+      box-shadow:
+        inset 0 0 60px #3cc6b30a,
+        0 0 90px #20a09615;
+      animation: respirar 6s ease-in-out infinite;
+    }
+
+    .aura::before,
+    .aura::after {
+      content: "";
+      position: absolute;
+      inset: 25px;
+      border: 1px solid #72f0da25;
+      border-radius: 50%;
+    }
+
+    .aura::after {
+      inset: 55px;
+      border-style: dashed;
+      animation: girar 38s linear infinite;
+    }
+
+    .orbita {
+      width: min(35vw, 380px);
+      aspect-ratio: 1;
+      position: relative;
+      display: grid;
+      place-items: center;
+    }
+
+    .orbe {
+      width: 62%;
+      aspect-ratio: 1;
+      position: relative;
+      border-radius: 50%;
+      background:
+        radial-gradient(
+          circle at 33% 25%,
+          #effffb 0 2%,
+          #b7fff0 5%,
+          #4bd7c2 23%,
+          #168b91 47%,
+          #0b3d54 70%,
+          #061b2b 100%
+        );
+      box-shadow:
+        0 0 24px #5fffe17a,
+        0 0 75px #32d6c040,
+        inset -18px -20px 32px #000d1bb8,
+        inset 9px 8px 22px #effffb6b;
+      animation: flotar 5s ease-in-out infinite;
+    }
+
+    .orbe::before {
+      content: "";
+      position: absolute;
+      inset: -13%;
+      border: 1px solid #b7fff078;
+      border-radius: 50%;
+      transform: rotateX(68deg) rotateZ(-22deg);
+    }
+
+    .orbe::after {
+      content: "✧";
+      position: absolute;
+      top: 13%;
+      left: 20%;
+      color: #eafffc;
+      font-size: 2.1rem;
+      text-shadow: 0 0 20px white;
+    }
+
+    .cristal {
+      position: absolute;
+      width: 38px;
+      height: 68px;
+      background: linear-gradient(155deg, #eafffc, #63e6d1 48%, #126c79);
+      clip-path: polygon(50% 0, 100% 34%, 66% 100%, 0 63%);
+      opacity: .75;
+      filter: drop-shadow(0 0 12px #50f2d68c);
+    }
+
+    .cristal-1 {
+      top: 13%;
+      right: 15%;
+      transform: rotate(28deg) scale(.7);
+    }
+
+    .cristal-2 {
+      bottom: 17%;
+      left: 11%;
+      transform: rotate(-40deg) scale(.52);
+    }
+
+    .cristal-3 {
+      top: 26%;
+      left: 8%;
+      transform: rotate(15deg) scale(.38);
+      opacity: .45;
+    }
+
+    .estrella {
+      position: absolute;
+      color: #c7fff5;
+      font-size: 1.2rem;
+      text-shadow: 0 0 14px #5be5d0;
+      animation: brillar 3s ease-in-out infinite;
+    }
+
+    .estrella-1 { top: 17%; left: 24%; }
+    .estrella-2 { top: 26%; right: 10%; animation-delay: 1s; }
+    .estrella-3 { bottom: 19%; right: 22%; animation-delay: 1.6s; }
+    .estrella-4 { bottom: 31%; left: 13%; animation-delay: .6s; }
+
+    .texto-orbe {
+      position: absolute;
+      bottom: 7%;
+      left: 50%;
+      transform: translateX(-50%);
+      white-space: nowrap;
+      color: #a8e7dd;
+      font-size: .7rem;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+    }
+
+    footer {
+      border-top: 1px solid #a0e4de20;
+    }
+
+    /* Ventana de bienvenida */
+
+    .fondo-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 5;
+      display: none;
+      place-items: center;
+      padding: 24px;
+      background: #030a12d9;
+      backdrop-filter: blur(12px);
+    }
+
+    .fondo-modal.visible {
+      display: grid;
+      animation: aparecer .4s ease both;
+    }
+
+    .carta {
+      max-width: 510px;
+      width: 100%;
+      padding: 40px 30px;
+      text-align: center;
+      border: 1px solid #77efdb66;
+      background: linear-gradient(145deg, #0e2c36f7, #06131ffa);
+      box-shadow: 0 0 80px #36d2bb21;
+    }
+
+    .decoracion {
+      color: var(--jade);
+      font-size: 1.7rem;
+    }
+
+    .carta h2 {
+      font: 600 clamp(1.8rem, 5vw, 2.6rem) 'Cinzel', serif;
+      margin: 16px 0;
+      color: var(--menta);
+    }
+
+    .carta p {
+      color: #c1dedd;
+      line-height: 1.9;
+    }
+
+    .cerrar {
+      margin-top: 15px;
+      padding: 12px 18px;
+      background: transparent;
+      color: var(--menta);
+      border: 1px solid #77efdb80;
+      cursor: pointer;
+      font: 600 .8rem 'Manrope', sans-serif;
+    }
+
+    .cerrar:hover {
+      background: #49d6bb1a;
+    }
+
+    @keyframes flotar {
+      0%, 100% { transform: translateY(0) rotate(-4deg); }
+      50% { transform: translateY(-14px) rotate(3deg); }
+    }
+
+    @keyframes respirar {
+      0%, 100% { transform: scale(.98); opacity: .65; }
+      50% { transform: scale(1.04); opacity: 1; }
+    }
+
+    @keyframes girar {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes brillar {
+      0%, 100% { opacity: .35; transform: scale(.8); }
+      50% { opacity: 1; transform: scale(1.2); }
+    }
+
+    @keyframes aparecer {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @media (max-width: 760px) {
+      header, footer {
+        padding: 20px;
+      }
+
+      .nota {
+        display: none;
+      }
+
+      main {
+        grid-template-columns: 1fr;
+        padding: 8px 23px 22px;
+        gap: 0;
+      }
+
+      .contenido {
+        padding: 35px 0 0;
+        text-align: center;
+      }
+
+      .etiqueta {
+        justify-content: center;
+        font-size: .68rem;
+      }
+
+      h1 {
+        font-size: clamp(2.65rem, 12vw, 4.3rem);
+        margin: 20px 0 16px;
+      }
+
+      .descripcion {
+        margin: 0 auto 24px;
+        font-size: .92rem;
+      }
+
+      .acciones {
+        justify-content: center;
+      }
+
+      .arte {
+        min-height: 330px;
+        margin-top: -2px;
+      }
+
+      .aura {
+        width: min(78vw, 330px);
+      }
+
+      .orbita {
+        width: min(72vw, 300px);
+      }
+
+      .texto-orbe {
+        bottom: 3%;
+        font-size: .59rem;
+      }
+
+      footer {
+        font-size: .57rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
+<div class="pagina">
 
-  <!-- Add your site or application content here -->
-  <p>Hello world! This is HTML5 Boilerplate.</p>
-  <script src="js/app.js"></script>
+  <header>
+    <div class="marca">
+      <div class="simbolo"><span>❄</span></div>
+      <span>Un pequeño universo</span>
+    </div>
+    <div class="nota">Un lugar hecho para ti · 001</div>
+  </header>
 
+  <main>
+    <section class="contenido">
+      <div class="etiqueta">Para mi persona favorita</div>
+
+      <h1>
+        Mi Sage
+        <span>duelista.</span>
+      </h1>
+
+      <p class="descripcion">
+        Hay lugares que se sienten distintos cuando estás tú.
+        Este pequeño universo está hecho para ti: para guardar
+        palabras, recuerdos y un poquito de magia que solo tú
+        podrías inspirar.
+      </p>
+
+      <div class="acciones">
+        <button class="boton" id="botonInicio">
+          Entrar a nuestro universo ↗
+        </button>
+        <span class="ayuda">Una aventura hecha con cariño.</span>
+      </div>
+    </section>
+
+    <section class="arte" aria-label="Orbe mágico de jade">
+      <div class="aura"></div>
+
+      <div class="orbita">
+        <div class="orbe"></div>
+
+        <div class="cristal cristal-1"></div>
+        <div class="cristal cristal-2"></div>
+        <div class="cristal cristal-3"></div>
+
+        <span class="estrella estrella-1">✦</span>
+        <span class="estrella estrella-2">✧</span>
+        <span class="estrella estrella-3">✦</span>
+        <span class="estrella estrella-4">✧</span>
+      </div>
+
+      <div class="texto-orbe">Respira · estás en casa</div>
+    </section>
+  </main>
+
+  <footer>
+    <span>Hecho con cariño, detalle a detalle</span>
+    <span>Jade · Hielo · Corazón</span>
+  </footer>
+
+</div>
+
+<div class="fondo-modal" id="modalBienvenida"
+     role="dialog" aria-modal="true"
+     aria-labelledby="tituloBienvenida">
+
+  <div class="carta">
+    <div class="decoracion">✧ ❄ ✧</div>
+
+    <h2 id="tituloBienvenida">Bienvenida, mi Dua.</h2>
+
+    <p>
+      Este lugar es para ti. Todavía quedan pequeñas sorpresas
+      por descubrir, pero por ahora solo quiero que sepas algo:
+      me alegra que existas en mi universo. 💚
+    </p>
+
+    <button class="cerrar" id="botonCerrar">
+      Volver a mirar las estrellas
+    </button>
+  </div>
+</div>
+
+<script>
+  const botonInicio = document.getElementById('botonInicio');
+  const modal = document.getElementById('modalBienvenida');
+  const botonCerrar = document.getElementById('botonCerrar');
+
+  botonInicio.addEventListener('click', () => {
+    modal.classList.add('visible');
+    botonCerrar.focus();
+  });
+
+  function cerrarModal() {
+    modal.classList.remove('visible');
+    botonInicio.focus();
+  }
+
+  botonCerrar.addEventListener('click', cerrarModal);
+
+  modal.addEventListener('click', (evento) => {
+    if (evento.target === modal) {
+      cerrarModal();
+    }
+  });
+
+  document.addEventListener('keydown', (evento) => {
+    if (evento.key === 'Escape') {
+      cerrarModal();
+    }
+  });
+</script>
 </body>
-
 </html>
